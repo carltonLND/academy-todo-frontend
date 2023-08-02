@@ -3,7 +3,7 @@ import { getTasks, Task } from "../core/requests";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -12,13 +12,16 @@ function App() {
     };
 
     fetchTasks();
-  });
+  }, []);
 
   return (
     <>
-      {tasks.map((t, i) => (
-        <div key={i}>{t.task}</div>
-      ))}
+      {tasks &&
+        tasks.map((t) => (
+          <div key={t.id}>
+            {t.id}: {t.task}
+          </div>
+        ))}
     </>
   );
 }

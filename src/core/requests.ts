@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export interface Task {
+  id: number;
   task: string;
 }
 
