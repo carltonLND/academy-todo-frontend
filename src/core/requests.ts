@@ -1,7 +1,11 @@
 import axios from "axios";
 
-export interface Task {
+export interface ITask {
   id: number;
+  task: string;
+}
+
+export interface Task {
   task: string;
 }
 
@@ -10,7 +14,11 @@ axios.defaults.baseURL =
     ? "https://todo-backend-ggbb.onrender.com"
     : "http://localhost:4000";
 
-export async function getTasks(): Promise<Task[]> {
+export async function getTasks(): Promise<ITask[]> {
   const response = await axios.get("/tasks");
   return response.data;
+}
+
+export async function postTask(task: Task) {
+  await axios.post("/tasks", task);
 }

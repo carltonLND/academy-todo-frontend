@@ -1,18 +1,29 @@
 import "./App.css";
-import { getTasks, Task } from "../core/requests";
+import { getTasks, postTask, ITask } from "../core/requests";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>();
+  const [inputValue, setInputValue] = useState("");
+  const [tasks, setTasks] = useState<ITask[]>();
+
+  const fetchTasks = async () => {
+    const tasks = await getTasks();
+    setTasks(tasks);
+  };
+
+  const postThenFetch = async () => {
+    await postTask({ task: inputValue });
+    fetchTasks();
+  };
 
   useEffect(() => {
-    const fetchTasks = async () => {
-      const tasks = await getTasks();
-      setTasks(tasks);
-    };
-
     fetchTasks();
   }, []);
+
+  const handleClick = () => {
+    setInputValue("");
+    postThenFetch();
+  };
 
   return (
     <>
@@ -22,6 +33,13 @@ function App() {
             {t.id}: {t.task}
           </div>
         ))}
+      <div>
+        <input
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button onClick={handleClick}>Create Task</button>
+      </div>
     </>
   );
 }
