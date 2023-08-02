@@ -10,7 +10,7 @@
     "format:check": "prettier --check src index.html",
     "lint": "eslint --max-warnings=0 src",
     "preview": "vite preview",
-    "test": "vitest --no-watch --reporter verbose",
+    "test": "vitest --no-watch --passWithNoTests --reporter verbose",
     "test:watch": "vitest --reporter verbose",
     "test:gui": "vitest --ui",
     "type-check": "tsc --noEmit"
