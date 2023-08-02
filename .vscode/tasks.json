@@ -1,0 +1,31 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			//this is npm even if you're using yarn
+			"type": "npm",
+			//which script in package.json to run
+			"script": "type-check",
+			"label": "type-check",
+			//feed the output of tsc into vscode's "problems" list
+			"problemMatcher": "$tsc",
+			//make this the default build task (often mapped as ctrl-shift-b)
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			//
+			"presentation": {
+				//reveal problems list if typechecker finds problems
+				"revealProblems": "onProblem",
+				//otherwise, don't open the terminal with tsc's happy output
+				//comment this out if you are debugging this task
+				"reveal": "silent"
+			}
+		}
+	]
+}
+//more about this setup
+//https://www.notion.so/weareacademy/Configure-vscode-to-type-check-your-entire-project-on-a-key-press-c094e6c14f1240969b099c238643cee2
