@@ -37,6 +37,7 @@ function App() {
         <input
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
+          onKeyDown={(e) => (e.key === "Enter" ? handleClick() : null)}
         />
         <button onClick={handleClick}>Create Task</button>
       </div>
