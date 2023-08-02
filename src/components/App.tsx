@@ -3,13 +3,13 @@ import "./App.css";
 import { greet } from "../greet";
 
 function App() {
-    return (
-        <div className="App">
-            <MyComponent />
+  return (
+    <div className="App">
+      <MyComponent />
 
-            {greet("World")}
-        </div>
-    );
+      {greet("World")}
+    </div>
+  );
 }
 
 export default App;
