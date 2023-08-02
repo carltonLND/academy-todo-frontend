@@ -1,14 +1,25 @@
-import { MyComponent } from "./MyComponent";
 import "./App.css";
-import { greet } from "../greet";
+import { getTasks, Task } from "../core/requests";
+import { useEffect, useState } from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <MyComponent />
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-      {greet("World")}
-    </div>
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const tasks = await getTasks();
+      setTasks(tasks);
+    };
+
+    fetchTasks();
+  });
+
+  return (
+    <>
+      {tasks.map((t, i) => (
+        <div key={i}>{t.task}</div>
+      ))}
+    </>
   );
 }
 
