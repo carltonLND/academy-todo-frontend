@@ -1,12 +1,11 @@
 import axios from "axios";
 
-export interface ITask {
-  id: number;
+export interface Task {
   task: string;
 }
 
-export interface Task {
-  task: string;
+export interface ITask extends Task {
+  id: number;
 }
 
 axios.defaults.baseURL =
