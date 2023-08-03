@@ -4,19 +4,28 @@ import { Task } from "../core/requests";
 export default function NewTaskInput(props: { newTask: (t: Task) => void }) {
   const [inputValue, setInputValue] = useState("");
 
+  const charLimit = 128;
+
   const handleClick = () => {
     setInputValue("");
-    props.newTask({ task: inputValue });
+    if (inputValue.length !== 0) {
+      props.newTask({ task: inputValue });
+    }
   };
 
   return (
     <div className="new-task-container">
-      <input
+      <textarea
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        onKeyDown={(e) => (e.key === "Enter" ? handleClick() : null)}
-      />
-      <button onClick={handleClick}>Create Task</button>
+        onChange={(e) => setInputValue(e.target.value.slice(0, charLimit))}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            handleClick();
+          }
+        }}
+      ></textarea>
+      <button onClick={handleClick}>Post</button>
     </div>
   );
 }

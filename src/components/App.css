@@ -1,3 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  background: #f8f8f8;
+  padding: 1em;
+  background: #282828;
+}
+
+/* APP */
+
+.todo-app {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-app h1 {
+  font-size: 300%;
+}
+
+/* NEW TASK INPUT */
+
+.new-task-container {
+  padding: 3em;
+  display: flex;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.new-task-container textarea {
+  width: 312px;
+  height: 96px;
+  resize: none;
+  font-size: 16px;
+  border-radius: 8px;
+}
+
+.new-task-container button {
+  border: 1px solid white;
+  border-radius: 8px;
+  padding: 10px;
+  height: 50%;
+  font-size: 16px;
+  background: darkslategray;
+  color: white;
+}
+
+/* TASK LIST */
+
+.task-list-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+  width: 90%;
+  height: 100%;
+}
+
+/* TASK VIEW */
+
+.task-container {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  border-radius: 10px;
+  width: 16em;
+  background: darkslategray;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+}
+
+.task-delete-btn {
+  width: 32px;
+  height: 32px;
+  color: red;
+}
+
+.task-divider {
+  width: 100%;
+  border: 1px solid white;
+}
+
+.task-text-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 6em;
+}
+
+.task-text {
+  text-align: center;
+  padding: 0px 8px;
+  overflow: scroll;
+}
+
+/* POPUP */
+
+.confirmation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+}
+
+.confirmation {
+  position: relative;
+  background: darkslategray;
+  border: 2px solid white;
+  border-radius: 12px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirmation-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  padding: 10px;
+}
+
+.confirmation-btn-container button {
+  padding: 20px 40px;
+  font-size: 16px;
 }

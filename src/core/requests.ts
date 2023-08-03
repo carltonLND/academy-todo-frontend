@@ -22,3 +22,7 @@ export async function getTasks(): Promise<ITask[]> {
 export async function postTask(task: Task) {
   await axios.post("/tasks", task);
 }
+
+export async function deleteTask(taskId: number) {
+  await axios.delete(`/tasks/${taskId}`);
+}

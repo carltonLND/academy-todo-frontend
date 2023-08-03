@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import { getTasks, postTask, Task, ITask } from "../core/requests";
+import { getTasks, postTask, Task, ITask, deleteTask } from "../core/requests";
 
-export function useTasks(): [ITask[], (t: Task) => void] {
+type NewTask = (task: Task) => void;
+type RemoveTask = (taskId: number) => void;
+
+export function useTasks(): [ITask[], NewTask, RemoveTask] {
   const [tasks, setTasks] = useState<ITask[]>([]);
 
   const refreshTasks = async () => {
@@ -14,9 +17,14 @@ export function useTasks(): [ITask[], (t: Task) => void] {
     refreshTasks();
   };
 
+  const removeTask = async (taskId: number) => {
+    await deleteTask(taskId);
+    refreshTasks();
+  };
+
   useEffect(() => {
     refreshTasks();
   }, []);
 
-  return [tasks, newTask];
+  return [tasks, newTask, removeTask];
 }
