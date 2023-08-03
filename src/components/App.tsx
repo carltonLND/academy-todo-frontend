@@ -1,29 +1,9 @@
 import "./App.css";
-import { getTasks, postTask, ITask } from "../core/requests";
-import { useEffect, useState } from "react";
+import { useTasks } from "../hooks/tasks";
+import NewTaskInput from "./NewTaskInput";
 
-function App() {
-  const [inputValue, setInputValue] = useState("");
-  const [tasks, setTasks] = useState<ITask[]>();
-
-  const fetchTasks = async () => {
-    const tasks = await getTasks();
-    setTasks(tasks);
-  };
-
-  const postThenFetch = async () => {
-    await postTask({ task: inputValue });
-    fetchTasks();
-  };
-
-  useEffect(() => {
-    fetchTasks();
-  }, []);
-
-  const handleClick = () => {
-    setInputValue("");
-    postThenFetch();
-  };
+export default function App() {
+  const [tasks, newTask] = useTasks();
 
   return (
     <>
@@ -33,16 +13,7 @@ function App() {
             {t.id}: {t.task}
           </div>
         ))}
-      <div>
-        <input
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={(e) => (e.key === "Enter" ? handleClick() : null)}
-        />
-        <button onClick={handleClick}>Create Task</button>
-      </div>
+      <NewTaskInput newTask={newTask} />
     </>
   );
 }
-
-export default App;
