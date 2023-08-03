@@ -20,6 +20,7 @@ html {
 
 .todo-app h1 {
   font-size: 300%;
+  text-align: center;
 }
 
 /* NEW TASK INPUT */
