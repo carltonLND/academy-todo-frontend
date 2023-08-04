@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
-import { getTasks, postTask, Task, ITask, deleteTask } from "../core/requests";
+import {
+  getTasks,
+  postTask,
+  TaskCandidate,
+  Task,
+  deleteTask,
+} from "../core/requests";
 
-type NewTask = (task: Task) => void;
+type NewTask = (task: TaskCandidate) => void;
 type RemoveTask = (taskId: number) => void;
 
-export function useTasks(): [ITask[], NewTask, RemoveTask, boolean] {
-  const [tasks, setTasks] = useState<ITask[]>([]);
+export function useTasksAPI(): [Task[], NewTask, RemoveTask, boolean] {
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const refreshTasks = async () => {
@@ -19,7 +25,7 @@ export function useTasks(): [ITask[], NewTask, RemoveTask, boolean] {
     setIsLoading(false);
   };
 
-  const newTask = async (task: Task) => {
+  const newTask = async (task: TaskCandidate) => {
     await postTask(task);
     refreshTasks();
   };

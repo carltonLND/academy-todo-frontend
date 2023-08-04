@@ -1,8 +1,8 @@
-import { ITask } from "../core/requests";
+import { Task } from "../core/requests";
 import TaskView from "./TaskView";
 
 interface TaskListProps {
-  tasks: ITask[];
+  tasks: Task[];
   removeTask: (taskId: number) => void;
 }
 

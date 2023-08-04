@@ -1,7 +1,9 @@
 import { useState } from "react";
-import { Task } from "../core/requests";
+import { TaskCandidate } from "../core/requests";
 
-export default function NewTaskInput(props: { newTask: (t: Task) => void }) {
+export default function NewTaskInput(props: {
+  newTask: (t: TaskCandidate) => void;
+}) {
   const [inputValue, setInputValue] = useState("");
 
   const charLimit = 128;
@@ -9,7 +11,7 @@ export default function NewTaskInput(props: { newTask: (t: Task) => void }) {
   const handleClick = () => {
     setInputValue("");
     if (inputValue.length !== 0) {
-      props.newTask({ task: inputValue });
+      props.newTask({ content: inputValue });
     }
   };
 

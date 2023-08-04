@@ -4,23 +4,20 @@ const taskServer = axios.create({
   baseURL: import.meta.env.VITE_SERVER_URL,
 });
 
-// "https://todo-backend-ggbb.onrender.com"
-// "http://localhost:4000"
-
-export interface Task {
-  task: string;
+export interface TaskCandidate {
+  content: string;
 }
 
-export interface ITask extends Task {
+export interface Task extends TaskCandidate {
   id: number;
 }
 
-export async function getTasks(): Promise<ITask[]> {
+export async function getTasks(): Promise<Task[]> {
   const response = await taskServer.get("/tasks");
   return response.data;
 }
 
-export async function postTask(task: Task) {
+export async function postTask(task: TaskCandidate) {
   await taskServer.post("/tasks", task);
 }
 

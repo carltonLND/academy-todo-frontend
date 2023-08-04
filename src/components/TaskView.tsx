@@ -1,10 +1,10 @@
-import { ITask } from "../core/requests";
+import { Task } from "../core/requests";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useState } from "react";
 import ConfirmationPopup from "./ConfirmationPopup";
 
 interface TaskViewProps {
-  task: ITask;
+  task: Task;
   removeTask: (taskId: number) => void;
 }
 
@@ -28,7 +28,7 @@ export default function TaskView({ task, removeTask }: TaskViewProps) {
       </div>
       <div className="task-divider" />
       <div className="task-text-container">
-        <p className="task-text">{task.task}</p>
+        <p className="task-text">{task.content}</p>
       </div>
     </div>
   );
