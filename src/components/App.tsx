@@ -9,8 +9,14 @@ export default function App() {
   return (
     <section className="todo-app">
       <h1>TODO Application</h1>
-      <NewTaskInput newTask={newTask} />
-      <TaskList tasks={tasks} removeTask={removeTask} />
+      {tasks === undefined ? (
+        <h1>Loading...</h1>
+      ) : (
+        <>
+          <NewTaskInput newTask={newTask} />
+          <TaskList tasks={tasks} removeTask={removeTask} />
+        </>
+      )}
     </section>
   );
 }

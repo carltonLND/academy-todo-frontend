@@ -12,10 +12,9 @@ export default function TaskList({
 }: TaskListProps): JSX.Element {
   return (
     <div className="task-list-container">
-      {tasks &&
-        tasks.map((t) => (
-          <TaskView key={t.id} task={t} removeTask={removeTask} />
-        ))}
+      {tasks.map((t) => (
+        <TaskView key={t.id} task={t} removeTask={removeTask} />
+      ))}
     </div>
   );
 }
