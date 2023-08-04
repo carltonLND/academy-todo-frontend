@@ -1,10 +1,10 @@
 import "./App.css";
-import { useTasks } from "../hooks/tasks";
+import { useTasksAPI } from "../hooks/useTasksHook";
 import NewTaskInput from "./NewTaskInput";
 import TaskList from "./TaskList";
 
 export default function App() {
-  const [tasks, newTask, removeTask, isLoading] = useTasks();
+  const [tasks, newTask, removeTask, isLoading] = useTasksAPI();
 
   return (
     <section className="todo-app">
