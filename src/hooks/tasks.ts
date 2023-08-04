@@ -13,9 +13,8 @@ export function useTasks(): [ITask[], NewTask, RemoveTask, boolean] {
       setIsLoading(true);
     }, 2000);
 
-    const tasks = await getTasks();
+    setTasks(await getTasks());
     clearInterval(loadingTimer);
-    setTasks(tasks);
 
     setIsLoading(false);
   };
