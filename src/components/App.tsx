@@ -12,7 +12,7 @@ export default function App() {
     <section className="todo-app">
       <h1>TODO Application</h1>
       {isLoading ? (
-        <h1>Loading...</h1>
+        <h1 style={{ padding: "3em" }}>...Connecting...</h1>
       ) : (
         <>
           <NewTaskInput newTask={newTask} />

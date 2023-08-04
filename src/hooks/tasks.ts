@@ -11,7 +11,7 @@ export function useTasks(): [ITask[], NewTask, RemoveTask, boolean] {
   const refreshTasks = async () => {
     const loadingTimer = setTimeout(() => {
       setIsLoading(true);
-    }, 3000);
+    }, 2000);
 
     const tasks = await getTasks();
     clearInterval(loadingTimer);
@@ -31,9 +31,7 @@ export function useTasks(): [ITask[], NewTask, RemoveTask, boolean] {
   };
 
   useEffect(() => {
-    setTimeout(() => {
-      refreshTasks();
-    }, 3000);
+    setTimeout(refreshTasks, 2000);
   }, []);
 
   return [tasks, newTask, removeTask, isLoading];
