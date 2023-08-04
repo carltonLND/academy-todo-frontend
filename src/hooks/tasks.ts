@@ -4,12 +4,20 @@ import { getTasks, postTask, Task, ITask, deleteTask } from "../core/requests";
 type NewTask = (task: Task) => void;
 type RemoveTask = (taskId: number) => void;
 
-export function useTasks(): [ITask[] | undefined, NewTask, RemoveTask] {
-  const [tasks, setTasks] = useState<ITask[]>();
+export function useTasks(): [ITask[], NewTask, RemoveTask, boolean] {
+  const [tasks, setTasks] = useState<ITask[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const refreshTasks = async () => {
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(true);
+    }, 3000);
+
     const tasks = await getTasks();
+    clearInterval(loadingTimer);
     setTasks(tasks);
+
+    setIsLoading(false);
   };
 
   const newTask = async (task: Task) => {
@@ -23,8 +31,10 @@ export function useTasks(): [ITask[] | undefined, NewTask, RemoveTask] {
   };
 
   useEffect(() => {
-    refreshTasks();
+    setTimeout(() => {
+      refreshTasks();
+    }, 3000);
   }, []);
 
-  return [tasks, newTask, removeTask];
+  return [tasks, newTask, removeTask, isLoading];
 }

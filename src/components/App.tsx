@@ -4,12 +4,14 @@ import NewTaskInput from "./NewTaskInput";
 import TaskList from "./TaskList";
 
 export default function App() {
-  const [tasks, newTask, removeTask] = useTasks();
+  const [tasks, newTask, removeTask, isLoading] = useTasks();
+
+  console.log("APP RENDER");
 
   return (
     <section className="todo-app">
       <h1>TODO Application</h1>
-      {tasks === undefined ? (
+      {isLoading ? (
         <h1>Loading...</h1>
       ) : (
         <>
