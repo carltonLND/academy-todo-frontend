@@ -7,11 +7,15 @@ import {
   deleteTask,
 } from "../core/requests";
 
-type NewTask = (task: TaskCandidate) => void;
-type RemoveTask = (taskId: number) => void;
+interface TasksAPI {
+  allTasks: Task[];
+  addTask: (task: TaskCandidate) => void;
+  removeTask: (taskId: number) => void;
+  isLoading: boolean;
+}
 
-export function useTasksAPI(): [Task[], NewTask, RemoveTask, boolean] {
-  const [tasks, setTasks] = useState<Task[]>([]);
+export function useTasksAPI(): TasksAPI {
+  const [allTasks, setAllTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   const refreshTasks = async () => {
@@ -19,13 +23,13 @@ export function useTasksAPI(): [Task[], NewTask, RemoveTask, boolean] {
       setIsLoading(true);
     }, 2000);
 
-    setTasks(await getTasks());
+    setAllTasks(await getTasks());
     clearInterval(loadingTimer);
 
     setIsLoading(false);
   };
 
-  const newTask = async (task: TaskCandidate) => {
+  const addTask = async (task: TaskCandidate) => {
     await postTask(task);
     refreshTasks();
   };
@@ -39,5 +43,5 @@ export function useTasksAPI(): [Task[], NewTask, RemoveTask, boolean] {
     setTimeout(refreshTasks, 2000);
   }, []);
 
-  return [tasks, newTask, removeTask, isLoading];
+  return { allTasks, addTask, removeTask, isLoading };
 }

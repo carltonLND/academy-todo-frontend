@@ -4,18 +4,18 @@ import NewTaskInput from "./NewTaskInput";
 import TaskList from "./TaskList";
 
 export default function App() {
-  const [tasks, newTask, removeTask, isLoading] = useTasksAPI();
+  const tasks = useTasksAPI();
 
   return (
     <section className="todo-app">
       <h1>TODO Application</h1>
-      {isLoading && (
+      {tasks.isLoading && (
         <section className="confirmation-container">
           <h1>Connecting to server...</h1>
         </section>
       )}
-      <NewTaskInput newTask={newTask} />
-      <TaskList tasks={tasks} removeTask={removeTask} />
+      <NewTaskInput newTask={tasks.addTask} />
+      <TaskList tasks={tasks.allTasks} removeTask={tasks.removeTask} />
     </section>
   );
 }
