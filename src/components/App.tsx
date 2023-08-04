@@ -11,14 +11,13 @@ export default function App() {
   return (
     <section className="todo-app">
       <h1>TODO Application</h1>
-      {isLoading ? (
-        <h1 style={{ padding: "3em" }}>...Connecting...</h1>
-      ) : (
-        <>
-          <NewTaskInput newTask={newTask} />
-          <TaskList tasks={tasks} removeTask={removeTask} />
-        </>
+      {isLoading && (
+        <section className="confirmation-container">
+          <h1>Connecting to server...</h1>
+        </section>
       )}
+      <NewTaskInput newTask={newTask} />
+      <TaskList tasks={tasks} removeTask={removeTask} />
     </section>
   );
 }
