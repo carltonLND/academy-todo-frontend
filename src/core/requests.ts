@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const taskServer = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "production"
-      ? "https://todo-backend-ggbb.onrender.com"
-      : "http://localhost:4000",
+  baseURL: import.meta.env.VITE_SERVER_URL,
 });
+
+// "https://todo-backend-ggbb.onrender.com"
+// "http://localhost:4000"
 
 export interface Task {
   task: string;
