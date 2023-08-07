@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { TaskCandidate } from "../core/requests";
 
-export default function NewTaskInput(props: {
+interface NewTaskInputProps {
   newTask: (t: TaskCandidate) => void;
   isDisabled: boolean;
-}) {
+}
+
+export default function NewTaskInput({
+  newTask,
+  isDisabled,
+}: NewTaskInputProps) {
   const [inputValue, setInputValue] = useState("");
 
   const charLimit = 128;
@@ -12,7 +17,7 @@ export default function NewTaskInput(props: {
   const handleClick = () => {
     setInputValue("");
     if (inputValue.length !== 0) {
-      props.newTask({ content: inputValue });
+      newTask({ content: inputValue });
     }
   };
 
@@ -27,7 +32,7 @@ export default function NewTaskInput(props: {
             handleClick();
           }
         }}
-        disabled={props.isDisabled}
+        disabled={isDisabled}
       ></textarea>
       <button onClick={handleClick}>Post</button>
     </div>
