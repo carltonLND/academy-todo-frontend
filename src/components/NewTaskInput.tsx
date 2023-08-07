@@ -3,6 +3,7 @@ import { TaskCandidate } from "../core/requests";
 
 export default function NewTaskInput(props: {
   newTask: (t: TaskCandidate) => void;
+  isDisabled: boolean;
 }) {
   const [inputValue, setInputValue] = useState("");
 
@@ -26,6 +27,7 @@ export default function NewTaskInput(props: {
             handleClick();
           }
         }}
+        disabled={props.isDisabled}
       ></textarea>
       <button onClick={handleClick}>Post</button>
     </div>

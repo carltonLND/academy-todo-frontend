@@ -14,7 +14,7 @@ export default function App() {
           <h1>Connecting to server...</h1>
         </section>
       )}
-      <NewTaskInput newTask={tasks.addTask} />
+      <NewTaskInput newTask={tasks.addTask} isDisabled={tasks.isLoading} />
       <TaskList tasks={tasks.allTasks} removeTask={tasks.removeTask} />
     </section>
   );
