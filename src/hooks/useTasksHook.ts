@@ -18,12 +18,12 @@ export function useTasksAPI(): TasksAPI {
   const [allTasks, setAllTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const refreshTasks = async () => {
+  const refreshTasks = () => {
     const loadingTimer = setTimeout(() => {
       setIsLoading(true);
     }, 2000);
 
-    setAllTasks(await getTasks());
+    getTasks().then((tasks) => setAllTasks(tasks));
     clearInterval(loadingTimer);
 
     setIsLoading(false);
