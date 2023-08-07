@@ -23,10 +23,12 @@ export function useTasksAPI(): TasksAPI {
       setIsLoading(true);
     }, 2000);
 
-    getTasks().then((tasks) => setAllTasks(tasks));
-    clearInterval(loadingTimer);
-
-    setIsLoading(false);
+    getTasks()
+      .then((tasks) => setAllTasks(tasks))
+      .then(() => {
+        clearInterval(loadingTimer);
+        setIsLoading(false);
+      });
   };
 
   const addTask = async (task: TaskCandidate) => {
