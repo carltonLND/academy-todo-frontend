@@ -20,7 +20,7 @@ export function useTasksAPI(): TasksAPI {
 
   const withLoadingState = async <T>(
     callback: () => Promise<T>,
-    delay = 1000
+    delay = 500
   ): Promise<T> => {
     const loadingTimer = setTimeout(() => {
       setIsLoading(true);
