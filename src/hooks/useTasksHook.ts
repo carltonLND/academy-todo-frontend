@@ -18,43 +18,41 @@ export function useTasksAPI(): TasksAPI {
   const [allTasks, setAllTasks] = useState<Task[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const withLoadingState = async <T>(
+    callback: () => Promise<T>,
+    delay = 1000
+  ) => {
+    const loadingTimer = setTimeout(() => {
+      setIsLoading(true);
+    }, delay);
+
+    const res = await callback();
+    clearTimeout(loadingTimer);
+    setIsLoading(false);
+    return res;
+  };
+
   const refreshTasks = async () => {
-    setAllTasks(await getTasks());
+    return setAllTasks(await getTasks());
   };
 
-  const addTask = async (task: TaskCandidate) => {
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(true);
-    }, 2000);
-
-    await postTask(task);
-    await refreshTasks();
-
-    clearInterval(loadingTimer);
-    setIsLoading(false);
+  const addTask = (task: TaskCandidate) => {
+    return withLoadingState(async () => {
+      await postTask(task);
+      await refreshTasks();
+    });
   };
 
-  const removeTask = async (taskId: number) => {
-    const loadingTimer = setTimeout(() => {
-      setIsLoading(true);
-    }, 2000);
-
-    await deleteTask(taskId);
-    await refreshTasks();
-
-    clearInterval(loadingTimer);
-    setIsLoading(false);
+  const removeTask = (taskId: number) => {
+    withLoadingState(async () => {
+      await deleteTask(taskId);
+      await refreshTasks();
+    });
   };
 
   useEffect(() => {
     setTimeout(async () => {
-      const loadingTimer = setTimeout(() => {
-        setIsLoading(true);
-      }, 2000);
-
       await refreshTasks();
-
-      clearInterval(loadingTimer);
       setIsLoading(false);
     }, 2000);
   }, []);
