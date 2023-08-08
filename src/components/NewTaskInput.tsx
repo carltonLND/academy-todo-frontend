@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { TaskCandidate } from "../core/requests";
 
 interface NewTaskInputProps {
@@ -11,8 +11,13 @@ export default function NewTaskInput({
   isDisabled,
 }: NewTaskInputProps) {
   const [inputValue, setInputValue] = useState("");
+  const inputField = useRef<HTMLTextAreaElement>(null);
 
-  const charLimit = 128;
+  useEffect(() => {
+    if (!isDisabled && inputField.current) {
+      inputField.current.focus();
+    }
+  }, [isDisabled]);
 
   const handleClick = () => {
     setInputValue("");
@@ -25,7 +30,7 @@ export default function NewTaskInput({
     <div className="new-task-container">
       <textarea
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value.slice(0, charLimit))}
+        onChange={(e) => setInputValue(e.target.value.slice(0, 128))}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault();
@@ -33,6 +38,7 @@ export default function NewTaskInput({
           }
         }}
         disabled={isDisabled}
+        ref={inputField}
       ></textarea>
       <button onClick={handleClick}>Post</button>
     </div>
