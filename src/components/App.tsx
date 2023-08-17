@@ -14,7 +14,9 @@ export default function App() {
         <h1>TODO Application</h1>
         <a
           className="source-link"
-          href="https://github.com/carltonlnd-todo-frontend"
+          href="https://github.com/carltonLND/academy-todo-frontend"
+          target="_blank"
+          rel="noreferrer"
         >
           <AiOutlineGithub />
           Github
