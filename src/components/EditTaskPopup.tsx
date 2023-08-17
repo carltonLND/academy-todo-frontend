@@ -12,11 +12,13 @@ export default function EditTaskPopup({
   editTask,
   setPrompt,
 }: EditTaskPopupProps) {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(task.content);
   const inputField = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (inputField.current) {
+      inputField.current.selectionStart = inputField.current.value.length;
+      inputField.current.selectionEnd = inputField.current.value.length;
       inputField.current.focus();
     }
   }, []);
