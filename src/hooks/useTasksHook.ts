@@ -5,12 +5,14 @@ import {
   TaskCandidate,
   Task,
   deleteTask,
+  updateTask,
 } from "../core/requests";
 
 interface TasksAPI {
   allTasks: Task[];
   addTask: (task: TaskCandidate) => void;
   removeTask: (taskId: number) => void;
+  editTask: (taskId: number, task: Task) => void;
   isLoading: boolean;
 }
 
@@ -33,7 +35,8 @@ export function useTasksAPI(): TasksAPI {
   };
 
   const refreshTasks = async () => {
-    return setAllTasks(await getTasks());
+    const tasks = await getTasks();
+    return setAllTasks(tasks.reverse());
   };
 
   const addTask = (task: TaskCandidate) => {
@@ -50,6 +53,13 @@ export function useTasksAPI(): TasksAPI {
     });
   };
 
+  const editTask = (taskId: number, task: TaskCandidate) => {
+    return withLoadingState(async () => {
+      await updateTask(taskId, task);
+      await refreshTasks();
+    });
+  };
+
   useEffect(() => {
     setTimeout(async () => {
       await refreshTasks();
@@ -57,5 +67,5 @@ export function useTasksAPI(): TasksAPI {
     }, 2000);
   }, []);
 
-  return { allTasks, addTask, removeTask, isLoading };
+  return { allTasks, addTask, removeTask, editTask, isLoading };
 }

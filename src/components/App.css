@@ -8,6 +8,15 @@ html {
   background: #282828;
 }
 
+a {
+  color: orange;
+  text-decoration: none;
+}
+
+a:hover {
+  color: skyblue;
+}
+
 /* APP */
 
 .todo-app {
@@ -18,9 +27,21 @@ html {
   align-items: center;
 }
 
+.todo-app .app-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.todo-app .source-link {
+  display: flex;
+  gap: 0.2em;
+  font-size: 1.5em;
+  justify-content: flex-end;
+}
+
 .todo-app h1 {
   font-size: 300%;
-  text-align: center;
+  text-align: left;
 }
 
 /* NEW TASK INPUT */
@@ -40,6 +61,7 @@ html {
   resize: none;
   font-size: 16px;
   border-radius: 8px;
+  padding: 8px;
 }
 
 .new-task-container button {
@@ -50,6 +72,31 @@ html {
   font-size: 16px;
   background: darkslategray;
   color: white;
+}
+
+/* EDIT TASK INPUT */
+
+.edit-task-container {
+  padding: 3em;
+  display: flex;
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.edit-task-container textarea {
+  width: 312px;
+  height: 96px;
+  resize: none;
+  font-size: 16px;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.edit-task-container button {
+  padding: 10px 30px;
+  font-size: 1.5em;
 }
 
 /* TASK LIST */
@@ -84,10 +131,21 @@ html {
   padding: 8px;
 }
 
+.task-btn-container {
+  display: flex;
+  gap: 10px;
+}
+
 .task-delete-btn {
   width: 32px;
   height: 32px;
   color: red;
+}
+
+.task-edit-btn {
+  width: 32px;
+  height: 32px;
+  color: orange;
 }
 
 .task-divider {
@@ -145,5 +203,13 @@ html {
 
 .confirmation-btn-container button {
   padding: 10px 30px;
-  font-size: 16px;
+  font-size: 1.5em;
+}
+
+.n {
+  color: maroon;
+}
+
+.y {
+  color: darkgreen;
 }

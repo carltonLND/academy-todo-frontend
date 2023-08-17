@@ -24,3 +24,7 @@ export async function postTask(task: TaskCandidate) {
 export async function deleteTask(taskId: number) {
   await taskServer.delete(`/tasks/${taskId}`);
 }
+
+export async function updateTask(taskId: number, task: TaskCandidate) {
+  await taskServer.put(`/tasks/${taskId}`, task);
+}

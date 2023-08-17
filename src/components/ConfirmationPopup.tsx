@@ -1,9 +1,11 @@
 interface ConfirmationPopupProps {
+  question: string;
   setPrompt: (bool: boolean) => void;
   successFn: () => void;
 }
 
 export default function ConfirmationPopup({
+  question,
   setPrompt,
   successFn,
 }: ConfirmationPopupProps): JSX.Element {
@@ -16,14 +18,16 @@ export default function ConfirmationPopup({
   };
 
   return (
-    <section className="confirmation-container">
-      <div className="confirmation">
-        <h1>Delete Task?</h1>
-        <div className="confirmation-btn-container">
-          <button onClick={() => handleClick(false)}>Cancel</button>
-          <button onClick={() => handleClick(true)}>Delete</button>
-        </div>
+    <div className="confirmation">
+      <h1>{question}</h1>
+      <div className="confirmation-btn-container">
+        <button className="n" onClick={() => handleClick(false)}>
+          Cancel
+        </button>
+        <button className="y" onClick={() => handleClick(true)}>
+          Confirm
+        </button>
       </div>
-    </section>
+    </div>
   );
 }
