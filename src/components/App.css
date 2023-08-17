@@ -128,11 +128,12 @@ html {
   background: darkslategray;
   border: 2px solid white;
   border-radius: 12px;
-  padding: 8px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: space-between;
+  gap: 1em;
 }
 
 .confirmation-btn-container {
@@ -140,10 +141,9 @@ html {
   justify-content: center;
   align-items: center;
   gap: 2em;
-  padding: 10px;
 }
 
 .confirmation-btn-container button {
-  padding: 20px 40px;
+  padding: 10px 30px;
   font-size: 16px;
 }
