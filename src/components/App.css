@@ -202,6 +202,10 @@ a:hover {
   gap: 1em;
 }
 
+.confirmation h1 {
+  align-self: center;
+}
+
 .confirmation-btn-container {
   display: flex;
   justify-content: center;
