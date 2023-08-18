@@ -1,6 +1,9 @@
 * {
   margin: 0;
   padding: 0;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 html {
@@ -11,6 +14,7 @@ html {
 a {
   color: orange;
   text-decoration: none;
+  cursor: pointer;
 }
 
 a:hover {
@@ -72,6 +76,7 @@ a:hover {
   font-size: 16px;
   background: darkslategray;
   color: white;
+  cursor: pointer;
 }
 
 /* EDIT TASK INPUT */
@@ -97,6 +102,7 @@ a:hover {
 .edit-task-container button {
   padding: 10px 30px;
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 /* TASK LIST */
@@ -140,12 +146,14 @@ a:hover {
   width: 32px;
   height: 32px;
   color: red;
+  cursor: pointer;
 }
 
 .task-edit-btn {
   width: 32px;
   height: 32px;
   color: orange;
+  cursor: pointer;
 }
 
 .task-divider {
@@ -204,6 +212,7 @@ a:hover {
 .confirmation-btn-container button {
   padding: 10px 30px;
   font-size: 1.5em;
+  cursor: pointer;
 }
 
 .n {
